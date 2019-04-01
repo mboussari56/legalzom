@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>LegalZoom Technical Test</title>
+</head>
+
+<body>
+		<div>
+        <form class="#" action= "/" th:action="@{/}" th:object="${bankDetail}" method="post">
+          <table>
+          	<tr>
+	          	<td>Enter Bank name : </td>
+	          	 <td><input type="text" th:field="*{bankName}"/></td>
+	          	 <td th:if="${#fields.hasErrors('bankName')}" th:errors="*{bankName}"></td>
+          	<tr>
+          	
+            <tr>
+              <td>Enter Card Number : </td>
+              <td><input type="text" th:field="*{cardNumber}"/></td>
+              <td th:if="${#fields.hasErrors('cardNumber')}" th:errors="*{cardNumber}"></td>
+			  <td>Example : 1223-12323-12323-1232</td>
+            </tr>
+             <tr>
+              <td>Enter between 1 and 12 for expiry month</td>
+              <td><input type="text" th:field="*{expiryMonth}"/></td>
+              <td th:if="${#fields.hasErrors('expiryMonth')}" th:errors="*{expiryMonth}"></td>
+              <td>Example : 1 - 12</td>
+            </tr>
+             <tr>
+              <td>Enter expiry year</td>
+              <td><input type="text" th:field="*{expiryYear}"/></td>
+              <td>Example: 2019<td>
+              <td th:if="${#fields.hasErrors('expiryYear')}" th:errors="*{expiryYear}"></td>
+              
+            </tr>
+            <tr>
+			
+           </tr>  
+           <tr>   
+           </tr> 
+            <tr> 
+            </tr>
+           <tr> 
+           <td th:if="${#fields.hasErrors('expiryYear')}" th:errors="*{expiryYear}"> Cannot be less than current year, enter 2019 or year</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+          </table>
+        </form>
+    </div>
+    <div>
+        <form  action= "/file" th:action="@{/file}" enctype="multipart/form-data" method="post">
+          <table>
+            <tr>
+              <td>Or</td>
+            </tr>
+            <tr>
+              <td>Upload a csv file</td>
+              <td><input type="file" name="file" /></td>
+              <td>Format : bank name, card number, month, year</td>
+
+            </tr>
+            <tr>
+                <td><input type="submit" value="Upload" /></td>
+            </tr>
+          </table>
+        </form>
+
+    </div>
+
+</body>
+</html>

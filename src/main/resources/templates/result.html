@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>LegalZoom Technical Test</title>
+</head>
+
+<body>
+
+	<table>
+		<thead>
+			<th>
+				Bank
+			</th>
+			<th>
+				Card Number
+			</th>
+			<th>
+				Expiry Date
+			</th>
+		</thead>
+			<tbody>
+			<tr th:each="row : ${records}">
+				<td th:text="${row.bankName}"></td>
+				<td th:text="${row.encodedCardNumber}"></td>
+				<td th:text="${row.expiryDate}"></td>
+			</tr>
+			<br><br/>
+			<tr>
+				Press back to enter more records
+			</tr>
+			<br><br/>
+			<tr>To start a new session, restart spring boot or go to localhost:8080/reset</tr>
+			<br><br/>
+		</tbody>
+		
+	</table>
+	
+</body>
+</html>
