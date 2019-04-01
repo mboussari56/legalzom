@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -68,7 +69,7 @@ public class BankService {
                     // log exception or throw exception
                     continue;
                 }
-                bankDetails.add(new BankDetail(fields[0], fields[1], Integer.parseInt(fields[2]), Integer.parseInt(fields[3])));
+                bankDetails.add(new BankDetail(fields[0], new BigInteger(fields[1]), Integer.parseInt(fields[2]), Integer.parseInt(fields[3])));
             }
 
         } catch (IOException e) {

@@ -1,5 +1,7 @@
 package uk.co.technical.legalzoom.util;
 
+import java.math.BigInteger;
+
 /**
  * 
  * @author moudjibb
@@ -16,30 +18,25 @@ public class NumberEncoder {
      * @param spliter
      * @return
      */
-    public static String hideString(String word, String spliter) {
+    public static String hideNumber(BigInteger number) {
 
-        if ((word == null || word.isEmpty()) || (spliter == null || spliter.isEmpty())) {
-            return word;
+        if (number.bitLength() < 16) {
+            return String.valueOf(number);
         }
 
-        if (!word.contains(spliter)) {
-            return word;
-        }
 
-        String words[] = word.split(spliter);
-
-        if (words.length < 2) {
-            return null;
-        }
         StringBuilder result = new StringBuilder();
-        result.append(words[0]);
+        char words[] = String.valueOf(number).toCharArray();
 
-        for (int i = 1; i < words.length; i++) {
-            result.append(spliter);
-            for (int j = 0; j < words[i].length(); j++) {
-                result.append("x");
+        for (int i = 0; i < words.length; i++) {
+            
+            if(i < 4) {
+                result.append(words[i]);
+            }else {
+                result.append("-xxxx-xxxx-xxxx");
+                break;
             }
-
+           
         }
         return result.toString();
     }

@@ -1,6 +1,7 @@
 package uk.co.technical.legalzoom.domain;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -41,9 +43,10 @@ public class BankDetail implements Serializable, Comparable<BankDetail> {
 
     @Column
     @NotNull
-    @Size(min = 16, max = 30)
-    private String cardNumber;
+    @Digits(integer=16, fraction=0)
+    private BigInteger cardNumber;
 
+   
     @Column
     @NotNull
     @Min(2019)
@@ -64,7 +67,7 @@ public class BankDetail implements Serializable, Comparable<BankDetail> {
         // TODO Auto-generated constructor stub
     }
 
-    public BankDetail(String bankName, String cardNumber, int expiryMonth, int expiryYear) {
+    public BankDetail(String bankName, BigInteger cardNumber, int expiryMonth, int expiryYear) {
         super();
         this.bankName = bankName;
         this.cardNumber = cardNumber;
@@ -88,11 +91,11 @@ public class BankDetail implements Serializable, Comparable<BankDetail> {
         this.bankName = bankName;
     }
 
-    public String getCardNumber() {
+    public BigInteger getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(String cardNumber) {
+    public void setCardNumber(BigInteger cardNumber) {
         this.cardNumber = cardNumber;
     }
 
@@ -113,7 +116,7 @@ public class BankDetail implements Serializable, Comparable<BankDetail> {
     }
 
     public String getEncodedCardNumber() {
-        return NumberEncoder.hideString(cardNumber, "-");
+        return NumberEncoder.hideNumber(cardNumber);
     }
 
     @Override
@@ -136,7 +139,7 @@ public class BankDetail implements Serializable, Comparable<BankDetail> {
     }
 
     private enum Month {
-
+		// Represents month of the year
         JAN(1),
         FEB(2),
         MAR(3),
@@ -155,7 +158,7 @@ public class BankDetail implements Serializable, Comparable<BankDetail> {
         Month(int value) {
             this.value = value;
         }
-
+		// A month is selected based on the int value passed
         public static Month valueOf(int value) {
             for (Month m : Month.values()) {
                 if (m.value == value) {

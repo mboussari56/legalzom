@@ -17,9 +17,9 @@
           	
             <tr>
               <td>Enter Card Number : </td>
-              <td><input type="text" th:field="*{cardNumber}"/></td>
+              <td><input type="number" th:field="*{cardNumber}"/></td>
               <td th:if="${#fields.hasErrors('cardNumber')}" th:errors="*{cardNumber}"></td>
-			  <td>Example : 1223-12323-12323-1232</td>
+			  <td>Example : 1223123312231232</td>
             </tr>
              <tr>
               <td>Enter between 1 and 12 for expiry month</td>
